@@ -1,0 +1,22 @@
+{
+  "name": "rpc",
+  "version": "1.0.0",
+  "description": "## 1.socke.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dingchaolin/node-rpc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dingchaolin/node-rpc/issues"
+  },
+  "homepage": "https://github.com/dingchaolin/node-rpc#readme",
+  "dependencies": {
+    "node-json-rpc": "0.0.1"
+  }
+}
