@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dingchaolin/node-rpc#readme",
   "dependencies": {
+    "jayson": "^2.0.4",
     "json-rpc2": "^1.0.2",
     "node-json-rpc": "0.0.1"
   }
