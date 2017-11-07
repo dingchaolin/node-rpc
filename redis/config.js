@@ -1,7 +1,7 @@
 let config = function( subscribe_channel_number = 3){
     let subscribe_channels = [],
         return_channels = [];
-    for( let i = 1; i < subscribe_channel_number; i ++ ){
+    for( let i = 1; i <= subscribe_channel_number; i ++ ){
         subscribe_channels.push("" + i);
         return_channels.push("" + (0-i));
     }
