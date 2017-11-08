@@ -8,7 +8,7 @@
 - brew services start rabbitmq
 
 ### 访问管理后台
-    - http://localhost:15672
+- http://localhost:15672
 - 账号/密码  guest/guest
 
 # RabbitMQ 四种exchange模式解析
