@@ -99,7 +99,10 @@
 ### 16. consume
 - 为每个接受到publish的消息指定一个回调函数，在回调函数中可以处理publish的消息内容
 - options.noAck 
-- 默认 false 当为false是表示消息出队后不会自动删除，如果设置成true,则无论消息处理成功与否此消息会被删除。注意到在消息不成功是，调用了ch.nack(msg))，此方法是将消息重新入队。
+- 默认 false 如果设置成true,则无论消息处理成功与否此消息会被删除。此时不用确认消息收到或者没有收到
+- 当为false时是表示消息出队后不会自动删除
+- 在消息成功时，调用ch.ack(msg))，消息不会重新入队。
+- 在消息不成功时，调用ch.nack(msg))，此方法是将消息重新入队。
 - options.consumerTag 服务器用来区分消费者传递消息的名称 通常是一个随机的名字
 - 服务器的回复中fields中有consumerTag，在取消cancel中
 
