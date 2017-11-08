@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/dingchaolin/node-rpc#readme",
   "dependencies": {
+    "@types/messenger": "^1.4.28",
     "ioredis": "^3.2.1",
     "jayson": "^2.0.4",
     "json-rpc2": "^1.0.2",
+    "messager": "^1.2.8",
+    "messenger": "0.0.9",
     "node-json-rpc": "0.0.1"
   }
 }
