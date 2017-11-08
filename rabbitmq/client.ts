@@ -34,6 +34,11 @@ class RabbitClient {
     发布信息
      */
     publish(exchangeName: string, message: any): boolean{
+        /*
+        fanout 多播类型 routingKey可以不指定, 指定也没用
+        direct 直连类型  通过routingkey来决定把消息推到哪个queue中 不需要绑定队列
+        topic  通过routingkey来决定把消息推到哪个queue中 需要绑定队列
+         */
         return this.channel.publish(exchangeName, '', new Buffer(JSON.stringify(message)))
     };
 
