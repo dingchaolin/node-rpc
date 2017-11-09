@@ -40,16 +40,16 @@ class RabbitClient {
         });
     }
     ;
-    receive(queueName, prefetch, pro_func) {
+    receive(queueName, prefetchCount, pro_func) {
         return __awaiter(this, void 0, void 0, function* () {
             let ok = yield this.channel.assertQueue(queueName, { durable: true });
-            yield this.channel.prefetch(prefetch);
-            this.channel.consume(queueName, function (msg) {
-                pro_func(JSON.parse(msg.content.toString())).then(function onFulfilled() {
+            yield this.channel.prefetch(prefetchCount);
+            this.channel.consume(queueName, (msg) => {
+                pro_func(JSON.parse(msg.content.toString())).then(() => {
                     this.channel.ack(msg);
-                }, function onRejected(err) {
-                    this.channel.nack(msg, false, false);
-                    console.error(err.stack);
+                }, (err) => {
+                    this.channel.nack(msg, true, true);
+                    console.error("错误信息====>", err);
                 });
             }, { noAck: false });
         });

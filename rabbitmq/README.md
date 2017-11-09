@@ -66,14 +66,16 @@
 
 ### 7. bindQueue
 - 将一个通道路径跟一个队列绑定
+- bindQueue(queue, source, pattern, [args])
+- source和pattern将限制哪个队列 
 
 ### 8. unbindQueue
 
 ### 9.assertExchange
 - 推断一个通道是否存在:将通道变为实例
 - fanout 是把拿到消息推到与之绑定的所有queue中, 多播
-- direct 直连类型的交换机，通过routingkey来决定把消息推到哪个queue中
-- topic 消息都会被转发到所有关心routingkey中指定话题的queue上
+- direct 直连类型的交换机，通过routingkey来决定把消息推到哪个queue中 需要绑定队列
+- topic 消息都会被转发到所有关心routingkey中指定话题的queue上 不需要绑定队列
 ### 10. checkExchange
 
 ### 11. deleteExchange

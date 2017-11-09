@@ -13,12 +13,20 @@ let count = 0;
 let test = function () {
     return __awaiter(this, void 0, void 0, function* () {
         yield client_1.mq.init();
-        yield client_1.mq.subscribe("dcl", (msg) => {
+        yield client_1.mq.receive("dcl_1", 100, (msg) => {
             console.log(`收到消息内容为:==>${msg}`);
+            return new Promise((resolve, reject) => {
+                if (msg) {
+                    resolve(msg);
+                }
+                else {
+                    reject({ error: 1, msg: "未收到" });
+                }
+            });
         });
-        setInterval(() => __awaiter(this, void 0, void 0, function* () {
-            yield client_1.mq.publish("dcl", `第${++count}次，你好啊！`);
-        }), 500);
+        setInterval(() => {
+            client_1.mq.send("dcl_1", `第${++count}次，你好啊！`);
+        }, 500);
     });
 };
 test();

@@ -1,5 +1,5 @@
 import {mq} from "./client";
-
+let count = 0;
 
 let test = async function(){
     await mq.init();
@@ -7,7 +7,10 @@ let test = async function(){
         console.log(`收到消息内容为:==>${msg}`)
     })
 
-    await mq.publish( "dcl", "你好啊！");
+    setInterval(async () => {
+        await mq.publish( "dcl", `第${++count}次，你好啊！`);
+        }, 500);
+
 }
 
 test();
