@@ -273,7 +273,7 @@ Job for rabbitmq-server.service failed because the control process exited with e
 
 ### 目前用户
 - guest/guest  只能使用localhost 地址登录
-- admin/admin  可以远程登录
+- admin/admin  可以远程登录 192.168.64.185
 
 
 
