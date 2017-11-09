@@ -157,6 +157,129 @@
 - 可以调用多次在全部确认完成之前
 
 
+# centos 安装rabbitmq
+
+#### 查看版本 
+- cat /proc/version
+
+#### 安装wget
+- yum install wget
+
+#### 安装erlang    
+- wget  http://erlang.org/download/otp_src_17.0.tar.gz
+
+#### 解压erlang  
+- tar -zxvf  otp_src_17.0.tar.gz
+
+#### 安装编译erlang的环境
+- yum -y install make ncurses-devel gcc gcc-c++ unixODBC unixODBC-devel openssl openssl-devel 
+
+#### 进入erlang目录
+- cd otp_src_17.0 
+
+#### 设置
+- ./configure --prefix=/usr/local/erlang --enable-smp-support --enable-threads --enable-sctp --enable-kernel-poll --enable-hipe --with-ssl  
+
+#### 安装和编译
+- make && make install
+
+#### 设置环境变量
+- sudo vi /etc/profile
+```
+ERL_HOME=/usr/local/erlang
+PATH=$ERL_HOME/bin:$PATH
+export ERL_HOME PATH
+```
+
+#### 激活环境变量
+- source /etc/profile 
+
+#### 验证是否已经追加成功
+- echo $PATH
+- echo $ERL_HOME
+- 直接输入 erl 就会进入erl的编程环境
+
+## 下载 rabbitmq 
+- wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.0/rabbitmq-server-3.6.0-1.noarch.rpm
+
+## 【方案1：失败】安装 rabbitmq
+- cd ..
+- rpm -i rabbitmq-server-3.6.0-1.noarch.rpm
+- 安装失败 因为rabbigmq的依赖关系所导致，所以要忽略依赖 执行下面的命令
+- rpm -i --nodeps rabbitmq-server-3.6.0-1.noarch.rpm 
+
+## rabbitmq 启停
+- 抱歉 以上的操作的步骤 启动总是失败
+```
+错误信息:
+Job for rabbitmq-server.service failed because the control process exited with error code. See "systemctl status rabbitmq-server.service" and "journalctl -xe" for details.
+```
+- 网上解决方案
+- https://stackoverflow.com/questions/8633882/rabbitmq-on-ubuntu-10-04-server
+- 但是在我这不奏效
+
+## 【方案2：成功】安装rabbitmq
+- Generic Unix 版本 rabbitmq-server-generic-unix-3.6.14
+
+#### 下载安装包
+- wget https://dl.bintray.com/rabbitmq/binaries/rabbitmq-server-generic-unix-3.6.14.tar.xz
+
+#### 解压
+- unxz rabbitmq-server-generic-unix-3.6.14.tar.xz  生成 rabbitmq-server-generic-unix-3.6.14.tar
+- tar -xvf rabbitmq-server-generic-unix-3.6.14.tar 生成 rabbitmq_server-3.6.14
+
+#### 修改文件名
+- mv ./rabbitmq_server-3.6.14 ./rabbitmq
+
+#### 添加扩展功能
+- cd rabbitmq/sbin
+- ./rabbitmq-plugins enable rabbitmq_management
+
+#### 启动
+- ./rabbitmq-server -detached  后台启动
+
+### 停止
+- ./rabbitmqctl stop
+
+#### 访问管理系统
+- http://127.0.0.1:15672
+
+## 以下命令启动之后才能执行
+
+### 查看用户列表
+- rabbitmqctl list_users
+
+### 增加用户
+- rabbitmqctl add_user username password 
+
+### 修改用户权限
+- rabbitmqctl set_user_tags username administrator
+
+### 修改密码
+- rabbitmqctl change_password userName newPassword
+
+### 删除用户
+- rabbitmqctl delete_user username
+
+### 为admin设置权限
+- rabbitmqctl set_permissions -p "/" admin ".*" ".*" ".*"  
+
+### 登录后台管理
+-  http://localhost:15672  
+-  默认端口号 15672
+
+### 代码端口不同
+- amqp://admin:admin@127.0.0.1:15672
+
+### 目前用户
+- guest/guest  只能使用localhost 地址登录
+- admin/admin  可以远程登录
+
+
+
+
+
+
 
 
 
