@@ -26,7 +26,7 @@ let test = function () {
         });
         setInterval(() => {
             client_1.mq.send("dcl_1", `第${++count}次，你好啊！`);
-        }, 500);
+        }, 10);
     });
 };
 test();

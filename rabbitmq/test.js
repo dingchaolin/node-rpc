@@ -18,7 +18,7 @@ let test = function () {
         });
         setInterval(() => __awaiter(this, void 0, void 0, function* () {
             yield client_1.mq.publish("dcl", `第${++count}次，你好啊！`);
-        }), 500);
+        }), 10);
     });
 };
 test();

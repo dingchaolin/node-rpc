@@ -16,7 +16,7 @@ let test = async function(){
 
     setInterval(() => {
         mq.send( "dcl_1", `第${++count}次，你好啊！`);
-        }, 500);
+        }, 10);
 
 }
 
