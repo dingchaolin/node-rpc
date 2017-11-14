@@ -13,12 +13,11 @@ let count = 0;
 let test = function () {
     return __awaiter(this, void 0, void 0, function* () {
         yield client_1.mq.init();
-        yield client_1.mq.subscribe("dcl", (msg) => {
-            console.log(`收到消息内容为:==>${msg}`);
-        });
-        setInterval(() => __awaiter(this, void 0, void 0, function* () {
-            yield client_1.mq.publish("dcl", `第${++count}次，你好啊！`);
-        }), 1000);
+        setInterval(() => {
+            ++count;
+            console.log(`进程 B 第${count}次发出消息~!`);
+            client_1.mq.send("dcl_1", `B--------第${count}次，你好啊！`);
+        }, 1000);
     });
 };
 test();

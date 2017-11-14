@@ -19,6 +19,7 @@ class RabbitClient {
         return __awaiter(this, void 0, void 0, function* () {
             this.connection = yield MQ.connect(this.url);
             this.channel = yield this.connection.createChannel();
+            return this;
         });
     }
     send(queueName, message) {
@@ -31,12 +32,17 @@ class RabbitClient {
     ;
     subscribe(exchangeName, pro_func) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.channel.assertExchange(exchangeName, 'fanout', { durable: false });
+            yield this.channel.assertExchange(exchangeName, 'fanout', { durable: true });
             let qok = yield this.channel.assertQueue('', { exclusive: true });
             yield this.channel.bindQueue(qok.queue, exchangeName, '');
             yield this.channel.consume(qok.queue, (msg) => {
-                pro_func(JSON.parse(msg.content.toString()));
-            }, { noAck: true });
+                pro_func(JSON.parse(msg.content.toString())).then(() => {
+                    this.channel.ack(msg);
+                }, (err) => {
+                    this.channel.nack(msg, true, true);
+                    console.error("错误信息====>", err);
+                });
+            }, { noAck: false });
         });
     }
     ;

@@ -10,14 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("./client");
 let count = 0;
+const config_1 = require("./config");
+let exchangeName = config_1.config.exchangeName;
 let test = function () {
     return __awaiter(this, void 0, void 0, function* () {
         yield client_1.mq.init();
-        yield client_1.mq.subscribe("dcl", (msg) => {
-            console.log(`收到消息内容为:==>${msg}`);
-        });
         setInterval(() => __awaiter(this, void 0, void 0, function* () {
-            yield client_1.mq.publish("dcl", `第${++count}次，你好啊！`);
+            ++count;
+            console.log(`进程 B 第${count}次发消息~`);
+            yield client_1.mq.publish(exchangeName, `B--------第${count}次，你好啊！`);
         }), 1000);
     });
 };

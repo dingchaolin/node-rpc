@@ -20,7 +20,9 @@ class RabbitClient {
     async init(){
         this.connection = await MQ.connect(this.url);
         this.channel = await this.connection.createChannel();
+        return this;
     }
+
 
 
     /*
@@ -50,7 +52,7 @@ class RabbitClient {
         header 不常用
          */
         // 设置通道类型 durable true 如果重启，这个通道依然存在
-        await this.channel.assertExchange(exchangeName, 'fanout', {durable: false});
+        await this.channel.assertExchange(exchangeName, 'fanout', {durable: true});
         //队列名随机  根连接关联
         let qok = await this.channel.assertQueue('',{exclusive:true});
         //绑定队列-通道
@@ -58,8 +60,23 @@ class RabbitClient {
         //消费通道消息
         //noAck true 队列中的消息发出之后，立即删除，不管是否收到
         await this.channel.consume(qok.queue, ( msg: any ) => {
-            pro_func( JSON.parse(msg.content.toString()));
-        },{noAck:true})
+            pro_func( JSON.parse(msg.content.toString())).then(
+                () => {
+                    //成功
+                    this.channel.ack(msg);
+                },
+                (err)=>{
+                    //失败
+                    /*
+                    nack(message, [allUpTo, [requeue]])
+                    allUpTo true 出错的消息优先处理
+                    requeue 把出错的消息放到原来的队列中
+                     */
+                    this.channel.nack(msg,true,true);
+                    console.error("错误信息====>",err)
+                }
+            );
+        },{noAck:false})
     };
 
 
@@ -94,5 +111,6 @@ class RabbitClient {
 
     }
 }
+
 
 export let mq = new RabbitClient(rabbitmq_url);

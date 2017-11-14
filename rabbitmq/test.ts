@@ -9,7 +9,7 @@ let test = async function(){
 
     setInterval(async () => {
         await mq.publish( "dcl", `第${++count}次，你好啊！`);
-        }, 10);
+        }, 1000);
 
 }
 
