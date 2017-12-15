@@ -3,7 +3,7 @@ const Consumer = kafka.Consumer;
 const Offset = kafka.Offset;
 const Client = kafka.Client;
 
-let topic = "IVU",
+let topic = "NI_HAO_SE_CAI",
     client = new Client('192.168.64.180:12181'),
     topics = [{
         topic: topic,

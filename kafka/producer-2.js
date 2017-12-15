@@ -3,7 +3,7 @@ const Producer = kafka.Producer;
 const Client = kafka.Client;
 let  client = new Client('192.168.64.185:12181');
 
-let topic = "IVU",
+let topic = "CE_SHI",
     producer = new Producer(client, {
     requireAcks: 1
 });
