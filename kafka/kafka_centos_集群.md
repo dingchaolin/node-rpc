@@ -178,6 +178,31 @@ zookeeper.connect=192.168.64.180:12181,192.168.64.185:12181 #设置zookeeper的�
 - ./kafka-topics.sh -zookeeper 192.168.64.185:12181 -describe -topic topicName
 
 
+## kafka 管理系统
+### 下载
+- git clone https://github.com/yahoo/kafka-manager.git
+
+#### 安装 sbt
+- mac下  brew install sbt
+- centos下
+- http://www.scala-sbt.org/download.html 下载 解压 安装
+- 查看是否安装成功 sbt sbt-version 会更新东西，时间有点久
+
+#### 编译打包
+- cd kafka-manager
+- sbt clean dist
+- 生成的包在 kafka-manager/target/universal 下面。生成的包只需要java环境就可以运行了
+- 解压
+- 修改conf/application.conf，把kafka-manager.zkhosts改为自己的zookeeper服务器地址
+- kafka-manager.zkhosts="127.0.0.1:2181"
+- 进入bin目录启动 
+- ./kafka-manager -Dconfig.file=../conf/application.conf
+- 后台启动
+-nohup ./kafka-manager -Dconfig.file=../conf/application.conf >/dev/null 2>&1 & 
+- 默认http端口是9000，可以修改配置文件里的http.port的值，或者通过命令行参数传递：
+- ./kafka-manager -Dhttp.port=9001
+
+
 
 
 
