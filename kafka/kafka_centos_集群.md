@@ -166,6 +166,9 @@ zookeeper.connect=192.168.64.180:12181,192.168.64.185:12181 #设置zookeeper的�
 ### 后台启动
 - ./kafka-server-start.sh ../config/server.properties 1>/dev/null 2>&1 &
 
+### 终止
+- ./kafka-server-stop.sh 
+
 ### 检查是否启动成功
 - jps
 - 显示有 kafka 的进程 表示启动成功
@@ -201,6 +204,7 @@ zookeeper.connect=192.168.64.180:12181,192.168.64.185:12181 #设置zookeeper的�
 -nohup ./kafka-manager -Dconfig.file=../conf/application.conf >/dev/null 2>&1 & 
 - 默认http端口是9000，可以修改配置文件里的http.port的值，或者通过命令行参数传递：
 - ./kafka-manager -Dhttp.port=9001
+- 停止进程 rm ../RUNNING_PID 
 
 
 

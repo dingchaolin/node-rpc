@@ -1,7 +1,7 @@
 const kafka = require('kafka-node');
 const Producer = kafka.Producer;
 const Client = kafka.Client;
-let  client = new Client('127.0.0.1:2181');
+let  client = new Client('192.168.64.185:12181');
 
 let topic = "IVU",
     producer = new Producer(client, {
@@ -13,7 +13,6 @@ let topic = "IVU",
 let onReady = function(){
     return new Promise( (resolve, reject) => {
         producer.on('ready', function() {
-
             producer.createTopics([topic], function (err, data) {
                 if( err ){
                     reject( 0 );
