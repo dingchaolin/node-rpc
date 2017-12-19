@@ -1,13 +1,26 @@
 # kafka centos 集群
 
 ## zookeeper最新版本下载地址
+
+### 稳定版
 - http://mirrors.hust.edu.cn/apache/zookeeper/stable/zookeeper-3.4.10.tar.gz
 - wget http://mirrors.hust.edu.cn/apache/zookeeper/stable/zookeeper-3.4.10.tar.gz
 - gunzip zookeeper-3.4.10.tar.gz 
 - tar -xvf zookeeper-3.4.10.tar.gz
 - mv zookeeper-3.4.10 zookeeper
 
-## zookeep安装与配置
+### 非稳定版 >= 3.5.0
+- http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.5.0-alpha/zookeeper-3.5.0-alpha.tar.gz
+- http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.5.1-alpha/zookeeper-3.5.1-alpha.tar.gz
+- http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.5.2-alpha/zookeeper-3.5.2-alpha.tar.gz
+- http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.5.3-beta/zookeeper-3.5.3-beta.tar.gz
+- 通过命令动态增删节点在 >= 3.5.0 以上才支持
+
+##### 非稳定版的配置及动态更新请看这里
+- http://www.cnblogs.com/dupang/p/5649843.html
+- http://zookeeper.apache.org/doc/r3.5.3-beta/zookeeperReconfig.html
+
+## zookeep安装与配置-稳定版
 
 ### 目录结构
 
@@ -117,6 +130,9 @@ server.2=192.168.64.180:2888:3888
 - tar -zxvf kafka_2.11-1.0.0.tgz 
 - mv kafka_2.11-1.0.0.tgz kafka
 
+## kafka迁移与扩容请看这里
+- http://blog.csdn.net/lizhitao/article/details/33344597
+- http://blog.csdn.net/louisliaoxh/article/details/51605146
 
 ### 修改配置文件
 - cd config
@@ -205,6 +221,7 @@ zookeeper.connect=192.168.64.180:12181,192.168.64.185:12181 #设置zookeeper的�
 - 默认http端口是9000，可以修改配置文件里的http.port的值，或者通过命令行参数传递：
 - ./kafka-manager -Dhttp.port=9001
 - 停止进程 rm ../RUNNING_PID 
+
 
 
 
