@@ -180,7 +180,7 @@ zookeeper.connect=192.168.64.180:12181,192.168.64.185:12181 #设置zookeeper的�
 - sh kafka-server-start.sh ../config/server.properties
 
 ### 后台启动
-- ./kafka-server-start.sh ../config/server.properties 1>/dev/null 2>&1 &
+    - ./kafka-server-start.sh ../config/server.properties 1>/dev/null 2>&1 &
 
 ### 终止
 - ./kafka-server-stop.sh 
@@ -223,6 +223,10 @@ zookeeper.connect=192.168.64.180:12181,192.168.64.185:12181 #设置zookeeper的�
 - 停止进程 rm ../RUNNING_PID 
 
 
+## kafka-Tool 也可以实现可视化
+
+## 目录中有一个kafka的配置文件 有问题时 请查看
+## zookeeper 配置文件几乎不用动
 
 
 
