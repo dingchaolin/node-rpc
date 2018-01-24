@@ -180,7 +180,7 @@ zookeeper.connect=192.168.64.180:12181,192.168.64.185:12181 #设置zookeeper的�
 - sh kafka-server-start.sh ../config/server.properties
 
 ### 后台启动
-    - ./kafka-server-start.sh ../config/server.properties 1>/dev/null 2>&1 &
+- ./kafka-server-start.sh ../config/server.properties 1>/dev/null 2>&1 &
 
 ### 终止
 - ./kafka-server-stop.sh 
