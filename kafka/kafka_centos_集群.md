@@ -1,5 +1,12 @@
 # kafka centos 集群
 
+## java 环境
+- 查看yum库中的Java安装包。
+- ◆输入：yum -y list java* 
+- 安装java
+- yum -y install java-1.8.0-openjdk* 
+- 查看版本 java -version
+
 ## zookeeper最新版本下载地址
 
 ### 稳定版

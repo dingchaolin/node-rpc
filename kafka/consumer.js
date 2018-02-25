@@ -4,7 +4,7 @@ const Offset = kafka.Offset;
 const Client = kafka.Client;
 
 let topic = "IVU",
-    client = new Client('192.168.64.185:12181'),
+    client = new Client('192.168.64.183:2181'),
     topics = [{
         topic: topic,
         partition: 0,

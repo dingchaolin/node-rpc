@@ -1,7 +1,7 @@
 const kafka = require('kafka-node');
 const Producer = kafka.Producer;
 const Client = kafka.Client;
-let  client = new Client('192.168.64.185:12181');
+let  client = new Client('192.168.64.183:2181');
 
 let topic = "IVU",
     producer = new Producer(client, {
